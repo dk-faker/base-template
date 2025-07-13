@@ -1,0 +1,147 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  width: 100vw; height: 100vh;
+  overflow-x: visible; overflow-y: hidden;
+  position: relative;
+  color: #fff;
+  font-family: Arial, sans-serif;
+}
+
+/* Canvas */
+.fireworks-canvas {
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none; z-index: 1;
+}
+
+/* Contenedor */
+.birthday-root {
+  position: relative; z-index: 2;
+  text-align: center;
+  padding: clamp(1rem,2vw,3rem);
+  width: 100%; box-sizing: border-box; margin: auto;
+}
+
+/* Texto animado */
+.text-block {
+  margin-bottom: clamp(1rem,2vw,3rem);
+}
+
+.splash-line,
+.message-line {
+  display: block;
+}
+
+.word {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: visible;
+}
+
+.spacer {
+  display: inline-block;
+  width: 0.5em;  /* espacio entre palabras */
+}
+
+/* tamaño y espacio de splash */
+.splash-line .word {
+  font-size: clamp(2.5rem,8vw,5rem);
+  letter-spacing: 0.05em;
+  margin-bottom: clamp(2rem,5vw,6rem);
+}
+
+/* tamaño y espacio de mensaje */
+.message-line .word {
+  font-size: clamp(1.2rem,4vw,2.5rem);
+  letter-spacing: 0.02em;
+  word-spacing: 0.5em;
+}
+
+.char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: appear 0.4s ease-out forwards;
+  animation-delay: calc(var(--i) * 0.08s);
+}
+
+@keyframes appear {
+  to { opacity:1; transform:translateY(0); }
+}
+
+/* Globos flotando */
+.balloons {
+  position: absolute;
+  bottom: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.balloon {
+  position: absolute;
+  bottom: 0;
+  width: clamp(20px, 6vw, 40px);
+  height: clamp(30px, 8vw, 60px);
+  border-radius: 50%;
+  animation: floatUp 8s ease-in infinite;
+  animation-delay: inherit;
+}
+
+.balloon:nth-child(odd) {
+  background: radial-gradient(circle at 30% 30%, #ff6b6b, #c0392b);
+}
+
+.balloon:nth-child(even) {
+  background: radial-gradient(circle at 30% 30%, #2ecc71, #27ae60);
+}
+
+.balloon::before {
+  content: '';
+  position: absolute;
+  top: clamp(4px, 1vw, 8px);
+  left: 50%;
+  width: clamp(10px, 2vw, 20px);
+  height: clamp(4px, 1vw, 8px);
+  background: rgba(255,255,255,0.6);
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+.balloon::after {
+  content: '';
+  position: absolute;
+  top: clamp(25px, 4vw, 50px);
+  left: 50%;
+  width: clamp(2px, 0.5vw, 4px);
+  height: clamp(20px, 4vw, 40px);
+  background: #fff;
+  transform: translateX(-50%);
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+  50%  { transform: translateY(-50vh) rotate(5deg);         }
+  100% { transform: translateY(-120vh) rotate(-5deg); opacity: 0; }
+}
+
+/* ------------------ MEDIA QUERIES PARA MÓVIL ------------------ */
+@media (max-width: 600px) {
+  .splash-line {
+    /* aún más pequeña si cabe */
+    font-size: 8vw;
+    letter-spacing: 0.4vw;
+  }
+  .message-line {
+    font-size: 4.5vw;
+    letter-spacing: 0.3vw;
+  }
+  .birthday-root {
+    padding: 1rem;
+  }
+.balloon::after {
+    display: none;
+  }
+}

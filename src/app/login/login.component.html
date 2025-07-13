@@ -1,0 +1,46 @@
+<canvas #canvas class="fireworks-canvas"></canvas>
+
+<div class="birthday-root">
+  <!-- Texto animado -->
+  <div class="text-block">
+    <!-- SPLASH: separado por palabras -->
+    <div class="splash-line">
+      <ng-container *ngFor="let word of splash.split(' '); let w= index">
+        <span class="word">
+          <span *ngFor="let ch of word.split(''); let i = index"
+                class="char"
+                [style.--i]="i">
+            {{ ch }}
+          </span>
+        </span>
+        <!-- inserta espacio real entre palabras -->
+        <span class="spacer"></span>
+      </ng-container>
+    </div>
+
+    <!-- MENSAJE, igual -->
+    <div class="message-line" *ngIf="showMessage">
+      <ng-container *ngFor="let word of message.split(' '); let w= index">
+        <span class="word">
+          <span *ngFor="let ch of word.split(''); let i = index"
+                class="char"
+                [style.--i]="i">
+            {{ ch }}
+          </span>
+        </span>
+        <span class="spacer"></span>
+      </ng-container>
+    </div>
+  </div>
+
+  <!-- Globos flotando -->
+  <div class="balloons" *ngIf="showBalloons">
+    <div
+      class="balloon"
+      *ngFor="let b of balloons"
+      [style.left.%]="b.left"
+      [style.animationDelay.ms]="b.delay"
+      [style.background]="b.color">
+    </div>
+  </div>
+</div>
