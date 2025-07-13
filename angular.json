@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "portal-zeus-safety": {
+    "base-template": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
