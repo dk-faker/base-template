@@ -11,8 +11,8 @@ import { PersonalComponent } from './features/personal/personal.component';
 import { ReportesComponent } from './features/reportes/reportes.component';
 
 export const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'thay', component: LoginComponent },
+  { path: '', redirectTo: 'thay', pathMatch: 'full' },
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -27,5 +27,5 @@ export const appRoutes: Routes = [
       { path: '', redirectTo: 'clientes', pathMatch: 'full' }
     ]
   },
-  { path: '**', redirectTo: 'login' }
+  { path: '**', redirectTo: 'thay' }
 ];
